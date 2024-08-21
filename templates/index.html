@@ -59,17 +59,17 @@
                             </thead>
                         
                             <tbody>
-                                {% for d in data %}
+                                {% for d in data %}  <! -- bucle para añadir datos segun sus ids -->
                                     <tr>
                                         <td>{{d.id}}</td>
                                         <td>{{d.username}}</td>
                                         <td>{{d.name}}</td>
                                         <td>{{d.password}}</td>
-                                        <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Edit</button></td>
+                                        <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Edit</button></td>  <! -- en el boton edit se añade el modal añadido a continuacion-->
                                         <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                     </tr>
 
-                                    <!-- modal -->
+                                    <!-- modal para modificar los datos del usuario-->
 
                                     <div class="modal fade" id="modal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

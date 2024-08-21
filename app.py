@@ -24,7 +24,7 @@ def home():
 #Ruta y metodo para guardar usuarios en la bdd
 @app.route('/user', methods=['POST'])
 def addUser():
-    username = request.form['username']
+    username = request.form['username'] #request coge la informacion del html usando el parametro dado
     name = request.form['name']
     password = request.form['password']
 

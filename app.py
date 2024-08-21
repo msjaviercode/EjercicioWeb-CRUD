@@ -29,10 +29,10 @@ def addUser():
     password = request.form['password']
 
     if username and name and password:
-        cursor = db.database.cursor() #usa el cursor creado anteriormente para acceder a la base de datos 
+        cursor = db.database.cursor() #usa la variable cursor creada anteriormente para acceder a la base de datos 
         sql = "INSERT INTO users (username, name, password) VALUES (%s, %s, %s)"
         data = (username, name, password)
-        cursor.execute(sql, data)
+        cursor.execute(sql, data) #execute es un metodo de sql para usar una query y añadirle una veriable con informacion
         db.database.commit()
     return redirect(url_for('home')) #en cada ejecucion del motodo la pagina se actualiza redirigiendose al home
 

@@ -7,7 +7,7 @@ template_dir = os.path.join(template_dir, 'src', 'templates' )              #a l
 
 app = Flask (__name__, template_folder = template_dir)
 
-#rutas de la aplicacion
+#ruta y metodo de renderizado de la aplicacion con flask
 @app.route('/')
 def home():
     cursor = db.database.cursor() #cargar la funcion para la conexion a la base de datos en la variable
@@ -19,7 +19,7 @@ def home():
     for record in myresult:
         insertObject.append(dict(zip(columnNames, record)))
     cursor.close()
-    return render_template('index.html', data=insertObject)
+    return render_template('index.html', data=insertObject) #renderiza la pagina web con los datos anteriores
 
 #Ruta y metodo para guardar usuarios en la bdd
 @app.route('/user', methods=['POST'])
@@ -29,7 +29,7 @@ def addUser():
     password = request.form['password']
 
     if username and name and password:
-        cursor = db.database.cursor()
+        cursor = db.database.cursor() #usa el cursor creado anteriormente para acceder a la base de datos 
         sql = "INSERT INTO users (username, name, password) VALUES (%s, %s, %s)"
         data = (username, name, password)
         cursor.execute(sql, data)
@@ -62,6 +62,6 @@ def edit(id):
     return redirect(url_for('home'))
 
 
-
+#se usa el puerto 4000 del localhost
 if __name__ == '__main__':
     app.run(debug=True, port=4000)

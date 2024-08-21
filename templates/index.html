@@ -13,7 +13,7 @@
 
     <h1 class="text-center mt-5 mb-5 text-primary">CRUD de usuarios basico</h1>
     
-    <div class="container"> <! -- primer contenedor para añadir usuarios -->
+    <div class="container"> <!-- primer contenedor para añadir usuarios -->
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -59,13 +59,13 @@
                             </thead>
                         
                             <tbody>
-                                {% for d in data %}  <! -- bucle para añadir datos segun sus ids -->
+                                {% for d in data %}  <!-- bucle para añadir datos segun sus ids -->
                                     <tr>
                                         <td>{{d.id}}</td>
                                         <td>{{d.username}}</td>
                                         <td>{{d.name}}</td>
                                         <td>{{d.password}}</td>
-                                        <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Edit</button></td>  <! -- en el boton edit se añade el modal añadido a continuacion-->
+                                        <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Edit</button></td>  <!-- en el boton edit se añade el modal añadido a continuacion-->
                                         <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                     </tr>
 

@@ -32,8 +32,8 @@ def addUser():
         cursor = db.database.cursor() #usa la variable cursor creada anteriormente para acceder a la base de datos 
         sql = "INSERT INTO users (username, name, password) VALUES (%s, %s, %s)"
         data = (username, name, password)
-        cursor.execute(sql, data) #execute es un metodo de sql para usar una query y añadirle una veriable con informacion
-        db.database.commit()
+        cursor.execute(sql, data) #execute es un metodo de mysql para usar una query y añadirle una veriable con informacion
+        db.database.commit() #commit ejecuta la orden ("envia" los datos)
     return redirect(url_for('home')) #en cada ejecucion del motodo la pagina se actualiza redirigiendose al home
 
 #Ruta y metodo para eliminar usuarios en la bdd

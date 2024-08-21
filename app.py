@@ -21,7 +21,7 @@ def home():
     cursor.close()
     return render_template('index.html', data=insertObject)
 
-#Ruta para guardar usuarios en la bdd
+#Ruta y metodo para guardar usuarios en la bdd
 @app.route('/user', methods=['POST'])
 def addUser():
     username = request.form['username']
@@ -34,9 +34,9 @@ def addUser():
         data = (username, name, password)
         cursor.execute(sql, data)
         db.database.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('home')) #en cada ejecucion del motodo la pagina se actualiza redirigiendose al home
 
-
+#Ruta y metodo para eliminar usuarios en la bdd
 @app.route('/delete/<string:id>')
 def delete(id):
     cursor = db.database.cursor()
@@ -45,7 +45,8 @@ def delete(id):
     cursor.execute(sql, data)
     db.database.commit()
     return redirect(url_for('home'))
-
+    
+#Ruta y metodo para editar usuarios en la bdd
 @app.route('/edit/<string:id>', methods=['POST'])
 def edit(id):
     username = request.form['username']

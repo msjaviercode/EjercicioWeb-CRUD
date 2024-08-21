@@ -13,9 +13,10 @@
 
     <h1 class="text-center mt-5 mb-5 text-primary">CRUD de usuarios basico</h1>
     
-    <div class="container"> <!-- primer contenedor para añadir usuarios -->
-        <div class="row">
-            <div class="col">
+    <div class="container">  <!-- contenedor global -->
+        
+        <div class="row"> <!-- primera y unica fila del contenedor -->
+            <div class="col"> <!-- primera columna para añadir usuarios -->
                 <div class="card shadow">
                     <div class="card-body">
                         <form action="/user" method="POST">
@@ -43,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col"> <!-- segunda columna para leer los datos y modificarlos -->
                 <div class="card shadow">
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -59,7 +60,7 @@
                             </thead>
                         
                             <tbody>
-                                {% for d in data %}  <!-- bucle para añadir datos segun sus ids -->
+                                {% for d in data %}  <!-- bucle para añadir datos según sus ids -->
                                     <tr>
                                         <td>{{d.id}}</td>
                                         <td>{{d.username}}</td>
@@ -69,7 +70,7 @@
                                         <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                     </tr>
 
-                                    <!-- modal para modificar los datos del usuario-->
+                                    <!-- modal de bootstrap para modificar los datos del usuario-->
 
                                     <div class="modal fade" id="modal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

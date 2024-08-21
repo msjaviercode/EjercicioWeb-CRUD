@@ -62,6 +62,6 @@ def edit(id):
     return redirect(url_for('home'))
 
 
-#se inicia la aplicacion usando flask usando el puerto 4000 del localhost
+#se inicia la aplicacion con flask usando el puerto 4000 del localhost
 if __name__ == '__main__':
     app.run(debug=True, port=4000)

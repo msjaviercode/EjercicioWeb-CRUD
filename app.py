@@ -39,7 +39,7 @@ def addUser():
 #Route and method to delete users in the database
 @app.route('/delete/<string:id>')
 def delete(id):
-    cursor = db.database.cursor()# connect to the database
+    cursor = db.database.cursor()# connection to the database
     sql = "DELETE FROM users WHERE id=%s" # delete a user from the database using the ID
     data = (id,)
     cursor.execute(sql, data)

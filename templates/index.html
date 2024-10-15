@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <h1 class="text-center mt-5 mb-5 text-primary">CRUD de usuarios basico</h1>  <!-- Título -->
+    <h1 class="text-center mt-5 mb-5 text-primary">CRUD de usuarios basico</h1>  <!-- Title -->
     
-    <div class="container">  <!-- contenedor global -->
+    <div class="container">  <!-- global container -->
         
-        <div class="row"> <!-- primera y unica fila del contenedor -->
+        <div class="row"> <!-- first and single row of the container-->
             
-            <div class="col"> <!-- primera columna para añadir usuarios -->
+            <div class="col"> <!--frist column to add users -->
                 <div class="card shadow">
                     <div class="card-body">
                         <form action="/user" method="POST">
@@ -46,7 +46,7 @@
                 </div>
             </div>
             
-            <div class="col"> <!-- segunda columna para leer los datos y modificarlos -->
+            <div class="col"> <!-- second column to read and modify the data -->
                 <div class="card shadow">
                     <div class="card-body">
                         <table class="table table-bordered">
@@ -62,7 +62,7 @@
                             </thead>
                         
                             <tbody>
-                                {% for d in data %}  <!-- bucle para añadir datos según sus ids -->
+                                {% for d in data %}  <!--loop to add the data using their ids as a reference-->
                                     <tr>
                                         <td>{{d.id}}</td>
                                         <td>{{d.username}}</td>
@@ -72,7 +72,7 @@
                                         <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Delete</a></td>
                                     </tr>
 
-                                    <!-- modal de bootstrap para modificar los datos del usuario-->
+                                    <!-- bootstrap's modal to modify the data from the user-->
 
                                     <div class="modal fade" id="modal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

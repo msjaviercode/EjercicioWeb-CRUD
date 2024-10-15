@@ -2,51 +2,51 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 import database as db
 
-template_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__))) #funcion para cargar el archivo hmtl (el index) 
-template_dir = os.path.join(template_dir, 'src', 'templates' )              #a la app flask 
+template_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__))) #function to load the HTML file (the index) 
+template_dir = os.path.join(template_dir, 'src', 'templates' )              #to the Flask app
 
 app = Flask (__name__, template_folder = template_dir)
 
-#ruta y metodo de renderizado de la aplicacion con flask
+#route and rendering method for the application with Flask
 @app.route('/')
 def home():
-    cursor = db.database.cursor() #cargar la funcion para la conexion a la base de datos en la variable
-    cursor.execute("SELECT * FROM users") #selecciona toda la informacion de la base de datos
+    cursor = db.database.cursor() #load the function for the database connection into the variable
+    cursor.execute("SELECT * FROM users") #selects all information from the database
     myresult = cursor.fetchall()
-    #convertir los datos a diccionario
+    # convert the data to a dictionary
     insertObject = []
     columnNames = [column[0] for column in cursor.description]
     for record in myresult:
         insertObject.append(dict(zip(columnNames, record)))
     cursor.close()
-    return render_template('index.html', data=insertObject) #renderiza la pagina web con los datos anteriores
+    return render_template('index.html', data=insertObject) #renders the webpage with the previous data
 
-#Ruta y metodo para guardar usuarios en la bdd
+#Route and method to save users in the database
 @app.route('/user', methods=['POST'])
 def addUser():
-    username = request.form['username'] #request coge la informacion del html usando el parametro dado
+    username = request.form['username'] #request retrieves the information from HTML using the given parameter
     name = request.form['name']
     password = request.form['password']
 
     if username and name and password:
-        cursor = db.database.cursor() #usa la variable cursor creada anteriormente para acceder a la base de datos 
+        cursor = db.database.cursor() #uses the previously created cursor variable to access the database
         sql = "INSERT INTO users (username, name, password) VALUES (%s, %s, %s)"
         data = (username, name, password)
-        cursor.execute(sql, data) #execute es un metodo de mysql para usar una query y añadirle una veriable con informacion
-        db.database.commit() #commit ejecuta la orden ("envia" los datos)
-    return redirect(url_for('home')) #en cada ejecucion del motodo la pagina se actualiza redirigiendose al home
+        cursor.execute(sql, data) #execute is a MySQL method to use a query and add a variable with information
+        db.database.commit() #commit executes the order ("sends" the data)
+    return redirect(url_for('home')) #each time the method runs, the page refreshes, redirecting to home
 
-#Ruta y metodo para eliminar usuarios en la bdd
+#Route and method to delete users in the database
 @app.route('/delete/<string:id>')
 def delete(id):
-    cursor = db.database.cursor()
-    sql = "DELETE FROM users WHERE id=%s"
+    cursor = db.database.cursor()# connect to the database
+    sql = "DELETE FROM users WHERE id=%s" # delete a user from the database using the ID
     data = (id,)
     cursor.execute(sql, data)
     db.database.commit()
     return redirect(url_for('home'))
     
-#Ruta y metodo para editar usuarios en la bdd
+#Route and method to edit the users from the database
 @app.route('/edit/<string:id>', methods=['POST'])
 def edit(id):
     username = request.form['username']
@@ -62,6 +62,6 @@ def edit(id):
     return redirect(url_for('home'))
 
 
-#se inicia la aplicacion con flask usando el puerto 4000 del localhost
+#initializes the app with the framework Flask and using the port 4000 in localhost
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
